@@ -37,10 +37,10 @@ shinyUI(fluidPage(
                 min = -10, max = 10, value = 0),
     
     sliderInput("learning_rate", "Set Learning Rate:", 
-                min = 0.001, max = 0.1, value = 0.05),
+                min = 0.001, max = 0.1, value = 0.03),
     
     sliderInput("iteration", "Number of Iteration", 
-                min = 1, max = 1000, value = 500)
+                min = 1, max = 1000, value = 250)
   ),
   
   mainPanel(
@@ -52,8 +52,8 @@ shinyUI(fluidPage(
              plotOutput("cost", width = 600),
              h3("Parameter Updates"),
              plotOutput("parameters", width = 600)),
-    tabPanel("Documentation"
-             #,includeMarkdown("www/documentation.md")
+    tabPanel("Documentation",
+             includeMarkdown("https://raw.githubusercontent.com/kocabiyik/shiny-apps/master/gradient-descent/www/documentation.md")
              )
     )
   )

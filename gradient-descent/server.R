@@ -1,6 +1,7 @@
 library(shiny)
 library(dplyr)
 library(ggplot2)
+library(markdown)
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
@@ -73,23 +74,10 @@ shinyServer(function(input, output) {
     records <- grad()
     theta0 <- tail(records, 1)$theta0 %>% as.numeric()
     theta1 <- tail(records, 1)$theta1 %>% as.numeric()
-    
-    grid <- data_frame(theta0 = seq(-10, 50, length.out = 100),
-                     theta1 = list(seq(-10, 10, length.out = 100)),
-                     cost = NA) %>% 
-    tidyr::unnest()
   
-  for (i in 1:nrow(grid)){
-    theta0 <- grid$theta0[i]
-    theta1 <- grid$theta1[i]
-    yhat <- theta0*x1+theta1*x2
-    grid$cost[i] <- sum((y-yhat)^2)/(2*m)
-  }
-  
-  grid %>% ggplot(aes(x = theta0, y = theta1, z = cost))+
-    geom_raster(aes(fill = cost)) +
-    geom_point(data = records, aes(x = theta0, y = theta1), color = "white", alpha = 0.1)+
-    scale_fill_gradient(low = "#56B1F7", high = "#132B43", guide = "colourbar")+
-    theme(legend.position="bottom")
+  records %>% ggplot(aes(x = theta0, y = theta1))+
+    geom_point()+
+    xlim(c(-10, 50))+
+    ylim(c(-10, 10))
   })
 })
