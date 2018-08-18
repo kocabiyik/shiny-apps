@@ -16,6 +16,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <script src="shared/bootstrap/js/bootstrap.min.js"></script>
       <script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+      <script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
       <!-- Shiny Default -->
       <!-- Material Design for Bootstrap fonts and icons -->
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
@@ -55,55 +56,54 @@
          </div>
          <!-- Sliders start -->
          <!-- 
-         
-         This is an easier option but does not work on shinyapps.io
-         <div class="row">
-         <div class="col">
-            {{sliderInput("learning_rate", "Learning Rate:", min = 0.01, max = 0.1, value = 0.02, step = 0.01)}}
-         </div>
-         <div class="col">
-            {{sliderInput("iteration", "Iterations:", min = 1, max = 1000, value = 200)}}
-         </div>
-        </div>
-         
-         -->
+            This is an easier option but does not work on shinyapps.io
+            <div class="row">
+            <div class="col">
+               {{sliderInput("learning_rate", "Learning Rate:", min = 0.01, max = 0.1, value = 0.02, step = 0.01)}}
+            </div>
+            <div class="col">
+               {{sliderInput("iteration", "Iterations:", min = 1, max = 1000, value = 200)}}
+            </div>
+            </div>
+            
+            -->
          <div class="row">
             <div class="col">
                <div class="form-group shiny-input-container">
                   <label class="control-label" for="learning_rate">Learning Rate:</label>
                   <input class="js-range-slider"
-                  id="learning_rate"
-                  data-min="0.01"
-                  data-max="0.1"
-                  data-from="0.02"
-                  data-step="0.01"
-                  data-grid="true"
-                  data-grid-num="9"
-                  data-grid-snap="false"
-                  data-prettify-separator=","
-                  data-prettify-enabled="true"
-                  data-keyboard="true"
-                  data-keyboard-step="11.1111111111111"
-                  data-data-type="number"/>
+                     id="learning_rate"
+                     data-min="0.01"
+                     data-max="0.1"
+                     data-from="0.02"
+                     data-step="0.01"
+                     data-grid="true"
+                     data-grid-num="9"
+                     data-grid-snap="false"
+                     data-prettify-separator=","
+                     data-prettify-enabled="true"
+                     data-keyboard="true"
+                     data-keyboard-step="11.1111111111111"
+                     data-data-type="number"/>
                </div>
             </div>
             <div class="col">
                <div class="form-group shiny-input-container">
                   <label class="control-label" for="iteration">Iterations:</label>
                   <input class="js-range-slider"
-                  id="iteration"
-                  data-min="1"
-                  data-max="1000"
-                  data-from="200"
-                  data-step="1"
-                  data-grid="true"
-                  data-grid-num="9.99"
-                  data-grid-snap="false"
-                  data-prettify-separator=","
-                  data-prettify-enabled="true"
-                  data-keyboard="true"
-                  data-keyboard-step="0.1001001001001"
-                  data-data-type="number"/>
+                     id="iteration"
+                     data-min="1"
+                     data-max="1000"
+                     data-from="200"
+                     data-step="1"
+                     data-grid="true"
+                     data-grid-num="9.99"
+                     data-grid-snap="false"
+                     data-prettify-separator=","
+                     data-prettify-enabled="true"
+                     data-keyboard="true"
+                     data-keyboard-step="0.1001001001001"
+                     data-data-type="number"/>
                </div>
             </div>
          </div>
@@ -123,6 +123,20 @@
                   <div id="cost" class="shiny-plot-output" style="width: 100%; height: 300px"></div>
                </div>
             </div>
+            <hr>
+            <h3>The Outline</h3>
+            <p>We have the following hypothesis:<br/>
+               \[h_\theta(x) = \theta_0+\theta_1 x\]
+            </p>
+            <p>It represents a linear relationship. To find the parameters, we need to define a cost function as follows:  </p>
+            <p>\[J(\theta_0, \theta_1) = \frac{1}{2m}\sum\limits_1^m(h_\theta(x^i)-y^i)^2\]  </p>
+            <p>When we find the minimum value of \(J\), we also find the parameters for the best fit.  </p>
+            <h3>The Algorithm</h3>
+            <p>We will start with some random parameters. Then we will simulteneously update the parameters when we find the mininum \(J\).</p>
+            <p>repeat until convergence:
+               \[\theta_j := \theta_j-\alpha\frac{\partial}{\partial_j}J(\theta_0,\theta_1)\] for i = 0 and i = 1
+            </p>
+            <a href="https://ikocabiyik.com/linear-regression-with-gradient-descent/">Read more...</a>
          </div>
          <!-- Optional JavaScript -->
          <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -23,4 +23,4 @@ $$\theta_j := \theta_j-\alpha\frac{\partial}{\partial_j}J(\theta_0,\theta_1)$$ f
 ### How to use the app
 1. Select initial parameter values (Optional)
 2. Select a learning rate (it will converge faster for higher values).
-3. Set number of iterations (How many times are we going to update our parameters?)
+3. Set number of iterations (How many times are we going to update our parameters?)  
