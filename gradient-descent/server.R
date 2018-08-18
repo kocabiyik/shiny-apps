@@ -101,5 +101,3 @@ server <- function(input, output) {
       xlab("Iteration")
   })
 }
-
-shinyApp(ui = htmlTemplate("www/index.html"), server)
