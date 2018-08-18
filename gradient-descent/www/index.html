@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Shiny Default -->
+      <script type="application/html-dependencies">json2[2014.02.04];jquery[1.12.4];shiny[1.0.5];ionrangeslider[2.1.6];strftime[0.9.2];bootstrap[3.3.7]</script>
+      <script src="shared/json2-min.js"></script>
+      <script src="shared/jquery.min.js"></script>
+      <script src="shared/shiny.min.js"></script>
+      <link href="shared/ionrangeslider/css/ion.rangeSlider.css" rel="stylesheet" />
+      <link href="shared/ionrangeslider/css/ion.rangeSlider.skinShiny.css" rel="stylesheet" />
+      <script src="shared/ionrangeslider/js/ion.rangeSlider.min.js"></script>
+      <script src="shared/strftime/strftime-min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <script src="shared/bootstrap/js/bootstrap.min.js"></script>
+      <script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+      <!-- Shiny Default -->
+      <!-- Material Design for Bootstrap fonts and icons -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+      <!-- Material Design for Bootstrap CSS -->
+      <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+      <title>Gradient Descent R Shiny App</title>
+      <style>
+         .js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar
+         {
+         background: #ea596e;
+         border-top: 0px;
+         border-bottom: 0px;
+         border-left: 0px;
+         border-right: 0px;
+         }
+         .js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar
+         {
+         background: #ea596e;
+         border-top: 0px;
+         border-bottom: 0px;
+         border-left: 0px;
+         border-right: 0px;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="container">
+      <!--jumbotron-->
+      <div class="jumbotron">
+         <div class="media">
+            <div class="media-body">
+               <h1 class="display-4">Getting to the Bottom!</h1>
+               <p class="lead">Gradient Descent is an iterative algorithm to solve optimization problems. It is frequently used for solving many Machine Learning problems. This app illustrates how it works.</p>
+            </div>
+            <img class="ml-3" src="https://emojipedia-us.s3.amazonaws.com/thumbs/240/twitter/147/snowboarder_1f3c2.png" alt="Descending" width="10%" height="10%">
+         </div>
+      </div>
+      <!--learning rate and iteration inputs -->
+      <div class="row">
+         <div class="col">
+            {{sliderInput("learning_rate", "Learning Rate:", min = 0.01, max = 0.1, value = 0.02, step = 0.01)}}
+         </div>
+         <div class="col">
+            {{sliderInput("iteration", "Iterations:", min = 1, max = 1000, value = 200)}}
+         </div>
+      </div>
+      <div class="container">
+         <div class="row">
+            <div class="col-sm">
+               <h3>Regression Line</h3>
+               <div id="reg_line" class="shiny-plot-output" style="width: 100%; height: 300px"></div>
+            </div>
+            <div class="col-sm">
+               <h3>Parameter Updates</h3>
+               <div id="parameters" class="shiny-plot-output" style="width: 100%; height: 300px"></div>
+            </div>
+            <div class="col-sm">
+               <h3>Cost</h3>
+               <div id="cost" class="shiny-plot-output" style="width: 100%; height: 300px"></div>
+            </div>
+         </div>
+      </div>
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+      <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+      </div>
+   </body>
+</html>

@@ -3,9 +3,9 @@ library(dplyr)
 library(ggplot2)
 library(markdown)
 
-# Define server logic required to draw a histogram
-shinyServer(function(input, output) {
-   
+# Define server logic for random distribution app ----
+server <- function(input, output) {
+  
   grad <- reactive({
     
     # alpha: learning rate
@@ -18,7 +18,7 @@ shinyServer(function(input, output) {
     m <- nrow(mtcars)
     
     # initial theta values
-    theta <- c(input$theta0, input$theta1)
+    theta <- c(1, 1)
     
     # variables
     x1 <- rep(1, m)
@@ -57,16 +57,15 @@ shinyServer(function(input, output) {
     theta1 <- tail(records, 1)$theta1 %>% as.numeric()
     
     mtcars %>% ggplot(aes(wt, mpg))+
-      geom_point()+
+      geom_point(color = "#2F4F4F")+
       geom_abline(intercept = theta0,
-                  slope = theta1)
-    })
-  
-  # cost
-  output$cost <- renderPlot({
-    records <- grad()
-    records %>% ggplot(aes(iter, cost))+
-      geom_point(size = 0.4)
+                  slope = theta1,
+                  color = "#ea596e",
+                  size = 1)+
+      theme(panel.background = element_rect(fill = "#e9ecef",
+                                      colour = "#e9ecef",
+                                      size = 0.5, linetype = "solid"),
+            plot.background = element_rect(fill = "#fafafa"))
   })
   
   # parameters
@@ -74,10 +73,33 @@ shinyServer(function(input, output) {
     records <- grad()
     theta0 <- tail(records, 1)$theta0 %>% as.numeric()
     theta1 <- tail(records, 1)$theta1 %>% as.numeric()
-  
-  records %>% ggplot(aes(x = theta0, y = theta1))+
-    geom_point()+
-    xlim(c(-10, 50))+
-    ylim(c(-10, 10))
+    
+    records %>% ggplot(aes(x = theta0, y = theta1))+
+      geom_point(color = "#2F4F4F",
+                 size = 0.4)+
+      xlim(c(-10, 50))+
+      ylim(c(-10, 10))+
+      theme(panel.background = element_rect(fill = "#e9ecef",
+                                            colour = "#e9ecef",
+                                            size = 0.5, linetype = "solid"),
+            plot.background = element_rect(fill = "#fafafa")) +
+      xlab(expression(theta[0]))+
+      ylab(expression(theta[1]))
   })
-})
+  
+  # cost
+  output$cost <- renderPlot({
+    records <- grad()
+    records %>% ggplot(aes(iter, cost))+
+      geom_point(size = 0.4,
+                 color = "#2F4F4F")+
+      theme(panel.background = element_rect(fill = "#e9ecef",
+                                            colour = "#e9ecef",
+                                            size = 0.5, linetype = "solid"),
+            plot.background = element_rect(fill = "#fafafa"))+
+      ylab("Cost")+
+      xlab("Iteration")
+  })
+}
+
+shinyApp(ui = htmlTemplate("www/index.html"), server)
