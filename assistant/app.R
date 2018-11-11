@@ -98,9 +98,9 @@ server <- function(input, output) {
 
     # import
     if(!is.null(input$img_file)) {
-      img <- magick::image_read(img_file$datapath)
+      img <- magick::image_read(input$img_file$datapath)
     } else 
-      img <- magick::image_read("image.JPG")
+      img <- magick::image_read("image.jpg")
     
     if(magick::image_info(img)$width > 1000) {img <- magick::image_resize(img, "1000x1000")}
     n_width <- input$n_width
