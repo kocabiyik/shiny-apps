@@ -126,7 +126,6 @@ server <- function(input, output) {
     numbers_upper_padding <- input$numbers_upper_padding
     
     # plot ----
-    img <- magick::image_read("image.jpg")
     
     # resize if necessary
     if(magick::image_info(img)$width > 1000) {
