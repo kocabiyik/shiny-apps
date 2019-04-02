@@ -25,12 +25,10 @@ server <- function(input, output) {
     x2 <- mtcars$wt
     y <- mtcars$mpg
     
-    # a blank dataframe to record simultaneous updates
-    records <- data_frame(
-      iter = as.integer(),
-      theta0 = as.numeric(),
-      theta1 = as.numeric(),
-      cost = as.numeric())
+    # placeholder vectors for parameter updates
+    updates_theta0 <- c()
+    updates_theta1 <- c()
+    updates_cost <- c()
     
     # gradient descent
     for (i in 1:iteration){
@@ -45,8 +43,16 @@ server <- function(input, output) {
       theta[2] <- theta[2]-alpha*(1/m)*sum((yhat-y)*x2)
       
       # record updates
-      records[i, ] <- c(i, theta[1], theta[2], cost)
+      updates_theta0[i] <- theta[1]
+      updates_theta1[i] <- theta[2]
+      updates_cost[i] <- cost
+      
     }
+    records <- data.frame(theta0 = updates_theta0,
+                          theta1 = updates_theta1,
+                          cost = updates_cost,
+                          iter = 1:iteration)
+    
     return(records)
   })
   
