@@ -26,9 +26,9 @@ server <- function(input, output) {
     y <- mtcars$mpg
     
     # placeholder vectors for parameter updates
-    updates_theta0 <- c()
-    updates_theta1 <- c()
-    updates_cost <- c()
+    updates_theta0 <- vector('double', iteration)
+    updates_theta1 <- vector('double', iteration)
+    updates_cost <- vector('double', iteration)
     
     # gradient descent
     for (i in 1:iteration){
