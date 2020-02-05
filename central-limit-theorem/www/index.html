@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+   <head>
+      <!-- Required meta tags -->
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <!-- Shiny Default -->
+      <script type="application/html-dependencies">json2[2014.02.04];jquery[1.12.4];shiny[1.0.5];ionrangeslider[2.1.6];strftime[0.9.2];bootstrap[3.3.7]</script>
+      <script src="shared/json2-min.js"></script>
+      <script src="shared/jquery.min.js"></script>
+      <script src="shared/shiny.min.js"></script>
+      <link href="shared/ionrangeslider/css/ion.rangeSlider.css" rel="stylesheet" />
+      <link href="shared/ionrangeslider/css/ion.rangeSlider.skinShiny.css" rel="stylesheet" />
+      <script src="shared/ionrangeslider/js/ion.rangeSlider.min.js"></script>
+      <script src="shared/strftime/strftime-min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <script src="shared/bootstrap/js/bootstrap.min.js"></script>
+      <script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+      <script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+      <!-- Shiny Default -->
+      <!-- Material Design for Bootstrap fonts and icons -->
+      <link href="https://fonts.googleapis.com/css?family=Open+Sans|Merriweather" rel="stylesheet">
+      <!-- Material Design for Bootstrap CSS -->
+      <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+      <title>Gradient Descent R Shiny App</title>
+      <style>
+        .irs-bar, .irs-from, .irs-to, .irs-single, .irs-bar-edge,
+        .js-irs-0 .irs-single, .js-irs-0 .irs-bar-edge, .js-irs-0 .irs-bar,
+        .js-irs-1 .irs-single, .js-irs-1 .irs-bar-edge, .js-irs-1 .irs-bar
+         {
+         background: #563D7C;
+         border-top: 0px;
+         border-bottom: 0px;
+         border-left: 0px;
+         border-right: 0px;
+         }
+         
+         /* typography */
+         h1, h2, h3, h4, h5, h6 {
+         font-family: 'Open Sans', sans-serif;
+         font-weight: 300;
+         color: #563D7C;
+         }
+
+         p b, strong {
+            text-shadow: 
+            -3px 0px 3px #2CFFC6,
+            3px 0px 3px #2CFFC6,
+            6px 0px 6px #2CFFC6,
+            -6px 0px 6px #2CFFC6;
+}
+p, li {
+  font-family: 'Merriweather', serif;
+  font-size:20px;
+  color: #404040;
+}
+      </style>
+   </head>
+   <body>
+      <div class="container">
+         <h1>Central Limit Theorem - A Simulation</h1>
+         
+         <p>Considering a distribution which can be plotted as follows:</p>
+         
+         <div class="container">
+            <div class="row">
+               <div class="col-sm">
+                  <div id="population" class="shiny-plot-output" style="width: 100%; height: 600px"></div>
+               </div>
+               </div>
+               </div>
+         <div class="row">
+            
+            
+   <p>If we sufficiently select a sample from a population, take the mean of the sample and repeat this process many times; then the distribution of the sample means are normally distributed. </p>
+            
+           <!-- sample size -->
+            <div class="col">
+               <div class="form-group shiny-input-container">
+                  <label class="control-label" for="iteration">Sample Size:</label>
+                  <input class="js-range-slider"
+                     id="sample_size"
+                     data-min="1"
+                     data-max="50"
+                     data-from="1"
+                     data-step="1"
+                     data-grid="true"
+                     data-grid-num="9.99"
+                     data-grid-snap="false"
+                     data-prettify-separator=","
+                     data-prettify-enabled="true"
+                     data-keyboard="true"
+                     data-keyboard-step="0.1001001001001"
+                     data-data-type="number"/>
+               </div>
+            </div>
+            
+            <!-- trials -->
+            <div class="col">
+               <div class="form-group shiny-input-container">
+                  <label class="control-label" for="learning_rate">Trials:</label>
+                  <input class="js-range-slider"
+                     id="trial"
+                     data-min="200"
+                     data-max="5000"
+                     data-from="500"
+                     data-step="1"
+                     data-grid="true"
+                     data-grid-num="9"
+                     data-grid-snap="false"
+                     data-prettify-separator=","
+                     data-prettify-enabled="true"
+                     data-keyboard="true"
+                     data-keyboard-step="11.1111111111111"
+                     data-data-type="number"/>
+               </div>
+            </div>
+         <!-- Sliders end -->
+         
+         <!-- CLT start -->
+         <div class="container">
+            <div class="row">
+               <div class="col-sm">
+                  <div id="clt" class="shiny-plot-output" style="width: 100%; height: 600px"></div>
+               </div>
+               </div>
+               </div>
+         <!-- CLT end -->
+            
+         <!-- Optional JavaScript -->
+         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+         <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+         <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+         <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
+      </div>
+   </body>
+</html>
