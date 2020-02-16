@@ -2,12 +2,12 @@ library(shiny)
 library(markdown)
 source('global.R')
 
-fluidPage(title = APP_TITLE, theme = 'bootstrap.min.css',
+fluidPage(title = APP_TITLE, theme = 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css',
           
           suppressDependencies("bootstrap"), # do not let Shiny to include bootstrap CSS by default
           
           # additional style sources in the head tag ----
-          tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "base.css"),
+          tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "base.css")),
           
           tags$head(HTML('<script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>')),
                     
@@ -17,10 +17,10 @@ fluidPage(title = APP_TITLE, theme = 'bootstrap.min.css',
           # math
           tags$head(tags$script(src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML")),
           
-          # if you would like to change the PRIMARY_COLOR in the global.R
-          # then, also update the values in the inputs.css
-          tags$link(rel = "stylesheet", type = "text/css", href = "inputs.css")),
-
+          # source the HTML with input styles
+          # it is not CSS but HTML because PRIMARY_COLOR value can be passed to the HTML template.
+          htmlTemplate("www/inputs-style.html", primary_color = PRIMARY_COLOR),
+          
           # navigation bar --- 
           htmlTemplate("www/navbar.html", primary_color = PRIMARY_COLOR),
           
@@ -31,8 +31,7 @@ fluidPage(title = APP_TITLE, theme = 'bootstrap.min.css',
           includeMarkdown('markdown/markdown1.md'),
           
           # plot 1 ---
-          htmlTemplate("www/plot1.html",
-                       plot1 = plotOutput("plot1")),
+          htmlTemplate("www/plot1.html", plot1 = plotOutput("plot1")),
           
           # markdown 2 ----
           includeMarkdown('markdown/markdown2.md'),
@@ -46,7 +45,7 @@ fluidPage(title = APP_TITLE, theme = 'bootstrap.min.css',
                                                   min = 200, max = 5000, value = 500),
                        
                        plot2 = plotOutput("plot2")
-                       ),
+          ),
           
           # end of the container ----
           HTML('</div>'),
