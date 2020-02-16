@@ -31,20 +31,16 @@ fluidPage(title = APP_TITLE, theme = 'bootstrap.min.css',
           includeMarkdown('markdown/markdown1.md'),
           
           # plot 1 ---
-          htmlTemplate("www/plot1.html", plot1 = plotOutput("plot1")),
-          
-          # markdown 2 ----
-          includeMarkdown('markdown/markdown2.md'),
-          
-          # plot 2 ---
-          htmlTemplate("www/plot2.html",
-                       slider_sample_size = sliderInput("sample_size", "Sample Size",
-                                                        min = 1, max = 50, value = 1),
+          htmlTemplate("www/plot1.html",
+                       iteration = sliderInput("iteration", "Iterations",
+                                                        min = 1, max = 500, value = 100),
                        
-                       slider_trial = sliderInput("trial", "Trials:",
-                                                  min = 200, max = 5000, value = 500),
+                       learning_rate = sliderInput("learning_rate", "Learning Rate",
+                                                  min = 0.0001, max = 0.001, value = 0.0003),
+                       theta = sliderInput("beta", " Momentum",
+                                                   min = 0.01, max = 0.99, value = 0.02),
                        
-                       plot2 = plotOutput("plot2")
+                       plot1 = plotOutput("plot1")
           ),
           
           # end of the container ----
