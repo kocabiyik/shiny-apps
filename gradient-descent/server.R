@@ -2,6 +2,7 @@ library(shiny)
 library(dplyr)
 library(ggplot2)
 library(markdown)
+source('global.R')
 
 # Define server logic for random distribution app ----
 server <- function(input, output) {
@@ -57,7 +58,7 @@ server <- function(input, output) {
   })
   
   # plot linear line
-  output$reg_line <- renderPlot({
+  output$plot1 <- renderPlot({
     records <- grad()
     theta0 <- tail(records, 1)$theta0 %>% as.numeric()
     theta1 <- tail(records, 1)$theta1 %>% as.numeric()
@@ -66,16 +67,16 @@ server <- function(input, output) {
       geom_point(color = "#2F4F4F")+
       geom_abline(intercept = theta0,
                   slope = theta1,
-                  color = "#ea596e",
+                  color = PRIMARY_COLOR,
                   size = 1)+
       theme(panel.background = element_rect(fill = "#e9ecef",
-                                      colour = "#e9ecef",
-                                      size = 0.5, linetype = "solid"),
+                                            colour = "#e9ecef",
+                                            size = 0.5, linetype = "solid"),
             plot.background = element_rect(fill = "#fafafa"))
   })
   
   # parameters
-  output$parameters <- renderPlot({
+  output$plot2 <- renderPlot({
     records <- grad()
     theta0 <- tail(records, 1)$theta0 %>% as.numeric()
     theta1 <- tail(records, 1)$theta1 %>% as.numeric()
@@ -94,7 +95,7 @@ server <- function(input, output) {
   })
   
   # cost
-  output$cost <- renderPlot({
+  output$plot3 <- renderPlot({
     records <- grad()
     records %>% ggplot(aes(iter, cost))+
       geom_point(size = 0.4,
