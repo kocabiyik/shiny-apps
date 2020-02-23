@@ -46,7 +46,7 @@ server <- function(input, output) {
         }
         
         # Color palette (100 colors)
-        col.pal<-colorRampPalette(c(PRIMARY_COLOR, "white"))
+        col.pal<-colorRampPalette(c('lightblue', "white"))
         colors<-col.pal(100)
         # height of facets
         z.facet.center <- (z[-1, -1] + z[-1, -ncol(z)] + z[-nrow(z), -1] + z[-nrow(z), -ncol(z)])/4
@@ -55,10 +55,10 @@ server <- function(input, output) {
         
         plt <- persp(x, y, z,
                      theta = 270,
-                     phi = 35,
+                     phi = 27,
                      expand = 0.7,
                      col = colors[z.facet.range],
-                     border = '#BE8AEE',
+                     border = PRIMARY_COLOR,
                      axes = FALSE, box = FALSE,
                      ltheta = 60, shade = 0.30
         )

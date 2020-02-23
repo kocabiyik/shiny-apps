@@ -2,7 +2,7 @@ library(shiny)
 library(markdown)
 source('global.R')
 
-fluidPage(title = APP_TITLE, theme = 'bootstrap.min.css',
+fluidPage(title = APP_TITLE, theme = 'bootstrap-material-design.min.css',
           
           suppressDependencies("bootstrap"), # do not let Shiny to include bootstrap CSS by default
           
@@ -40,7 +40,7 @@ fluidPage(title = APP_TITLE, theme = 'bootstrap.min.css',
                        theta = sliderInput("beta", " Momentum",
                                                    min = 0.01, max = 0.99, value = 0.02),
                        
-                       plot1 = plotOutput("plot1")
+                       plot1 = plotOutput("plot1", width = '100%', height = '600px')
           ),
           
           # end of the container ----
