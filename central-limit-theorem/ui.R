@@ -2,7 +2,7 @@ library(shiny)
 library(markdown)
 source('global.R')
 
-fluidPage(title = APP_TITLE, theme = 'bootstrap.min.css',
+fluidPage(title = APP_TITLE, theme = 'bootstrap-material-design.min.css',
           
           suppressDependencies("bootstrap"), # do not let Shiny to include bootstrap CSS by default
           

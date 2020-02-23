@@ -21,9 +21,9 @@ server <- function(input, output) {
         
         for (i in 1:trial){
             if (i == 1) { observed_means = rep(NA, trial) }
-            observed_means[i] = mean(sample(data_sets$population, sample_size))
+            observed_means[i] = sum(sample(data_sets$population, sample_size))
         }
         hist(observed_means, breaks = 100, col = PRIMARY_COLOR, 
-             main = 'Observed means of the samples', xlab = 'Observed Means')
+             main = 'Sum of the samples', xlab = 'Observed Sums')
     })
 }
