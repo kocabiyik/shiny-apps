@@ -4,10 +4,10 @@
 
 An educational app to visualize how Gradient Descent is working.  
 
+![Gradient Descent](images/gradient-descent.png)
+
 Check on Shinyapps.io:
 [Linear Regression with Gradient Descent](https://kocabiyik.shinyapps.io/gradient-descent/).
-
-![Gradient Descent](images/gradient-descent.png)
 
 Run locally:
 ```
@@ -18,10 +18,10 @@ shiny::runGitHub(repo = 'kocabiyik/shiny-apps', subdir = 'gradient-descent')
 
 What happens if it gains momentum?  
 
+![Gradient Descent With Momentum](images/gradient-descent-with-momentum.png)  
+
 Check on Shinyapps.io:
 [Gradient Descent with Momentum](https://kocabiyik.shinyapps.io/gradient-descent-with-momentum/).
-
-![Gradient Descent With Momentum](images/gradient-descent-with-momentum.png)  
 
 Run locally:
 ```
