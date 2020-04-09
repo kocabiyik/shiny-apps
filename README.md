@@ -21,8 +21,8 @@ What happens if it gains momentum?
 Check on Shinyapps.io:
 [Gradient Descent with Momentum](https://kocabiyik.shinyapps.io/gradient-descent-with-momentum/).
 
-![Gradient Descent With Momentum](images/gradient-descent-with-momentum.png
-)
+![Gradient Descent With Momentum](images/gradient-descent-with-momentum.png)  
+
 Run locally:
 ```
 shiny::runGitHub(repo = 'kocabiyik/shiny-apps', subdir = 'gradient-descent-with-momentum')
