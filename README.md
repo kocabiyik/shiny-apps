@@ -32,7 +32,7 @@ shiny::runGitHub(repo = 'kocabiyik/shiny-apps', subdir = 'gradient-descent-with-
 
 Understanding Central Limit Theorem   
 
-![Central Limit Theorem](images/central-limit-theorem)
+![Central Limit Theorem](images/central-limit-theorem.png)
 
 Check on Shinyapps.io:
 [Central Limit Theorem](https://kocabiyik.shinyapps.io/central-limit-theorem/).
